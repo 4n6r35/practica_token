@@ -2,7 +2,11 @@ import express from 'express'
 import cors from 'cors'
 import "dotenv/config"
 import { connection } from '../database/config.js';
+import { userRouter } from '../routes/user.js';
 
+const paths = {
+    user: '/api/user'
+}
 export class Server {
 
     constructor() {
@@ -31,7 +35,7 @@ export class Server {
     }
 
     routes() {
-        
+        this.app.use(paths.user, userRouter)
     }
 
     listen() {
